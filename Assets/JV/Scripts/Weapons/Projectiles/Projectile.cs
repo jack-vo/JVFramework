@@ -9,6 +9,10 @@ namespace JV {
 
         protected Rigidbody2D rigidbody;
 
+        public GameObject enemyDeathEffect;
+        public GameObject impactEffect;
+        public int pointsForKill;
+
         // Use this for initialization
         void Start () {
             player = FindObjectOfType<PlayerController> ();
@@ -19,7 +23,14 @@ namespace JV {
             }
         }
 
-        void OnTriggerEnter2D (Collider2D collision) {
+        void OnTriggerEnter2D (Collider2D other) {
+            if (other.tag == "Enemy") {
+                Instantiate (enemyDeathEffect, other.transform.position, other.transform.rotation);
+                Destroy (other.gameObject);
+                ScoreManager.AddPoints (pointsForKill);
+            }
+
+            Instantiate (impactEffect, transform.position, transform.rotation);
             Destroy (gameObject);
         }
     }

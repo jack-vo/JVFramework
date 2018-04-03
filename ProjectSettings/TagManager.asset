@@ -17,9 +17,9 @@ TagManager:
   - Player
   - Level
   - Enemy
-  - 
-  - 
-  - 
+  - Projectiles
+  - Checkpoints
+  - Collectibles
   - 
   - 
   - 
