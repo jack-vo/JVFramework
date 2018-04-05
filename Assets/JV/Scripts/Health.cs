@@ -8,6 +8,8 @@ namespace JV {
         public int health = 1;
         public GameObject deathEffect;
 
+		AudioSource audioSource;
+
         public virtual void Start () {
             if (health <= 0) {
                 health = 1;
@@ -16,6 +18,8 @@ namespace JV {
             if (maxHealth < health) {
                 maxHealth = health;
             }
+
+			audioSource = GetComponent<AudioSource> ();
         }
 
         public virtual void Update () {
@@ -30,6 +34,10 @@ namespace JV {
 
         public virtual void TakeDamage(int damageToTake) {
             health -= damageToTake;
+
+			if (audioSource) {
+				audioSource.Play ();
+			}
         }
 
         public virtual void AddHealthPoints(int healthPoints) {
