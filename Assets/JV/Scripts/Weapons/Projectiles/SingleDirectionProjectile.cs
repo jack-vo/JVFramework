@@ -4,8 +4,14 @@ using UnityEngine;
 
 namespace JV {
     public class SingleDirectionProjectile : Projectile {
-        void Update () {
+        public override void Update () {
             rigidbody.velocity = new Vector2 (speed, rigidbody.velocity.y);
+
+            if (rotationSpeed != 0) {
+                rigidbody.angularVelocity = rotationSpeed;
+            }
+
+            base.Update ();
         }
     }
 }

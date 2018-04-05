@@ -1,9 +1,73 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace JV {
+    public class HashtableEvent : UnityEvent<Hashtable> { }
+
     public class LevelManager : MonoBehaviour {
+
+        private Dictionary<string, HashtableEvent> eventDictionary;
+        private static LevelManager levelManager;
+
+        public static LevelManager Instance {
+            get {
+                if (!levelManager) {
+                    levelManager = FindObjectOfType<LevelManager> ();
+
+                    if (!levelManager) {
+                        Debug.Log("There needs to be one active LevelManager script on a GameObject in your scene.");
+                    } else {
+                        levelManager.Init ();
+                    }
+                }
+
+                return levelManager;
+            }
+        }
+
+        void Init () {
+            if (eventDictionary == null) {
+                eventDictionary = new Dictionary<string, HashtableEvent> ();
+            }
+        }
+
+        public static void StartListening(string eventName, UnityAction<Hashtable> listener) {
+            HashtableEvent thisEvent = null;
+
+            if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent)) {
+                thisEvent.AddListener (listener);
+            } else {
+                thisEvent = new HashtableEvent ();
+                thisEvent.AddListener (listener);
+                Instance.eventDictionary.Add (eventName, thisEvent);
+            }
+        }
+
+        public static void StopListening(string eventName, UnityAction<Hashtable> listener) {
+            HashtableEvent thisEvent = null;
+
+            if (Instance.eventDictionary.TryGetValue (eventName, out thisEvent)) {
+                if (listener == null) {
+                    thisEvent.RemoveAllListeners ();
+                } else {
+                    thisEvent.RemoveListener (listener);
+                }
+            }
+        }
+
+        public static void TriggerEvent (string eventName, Hashtable eventParams = default(Hashtable)) {
+            HashtableEvent thisEvent = null;
+
+            if (Instance.eventDictionary.TryGetValue (eventName, out thisEvent)) {
+                thisEvent.Invoke (eventParams);
+            }
+        }
+
+        public static void TriggerEvent (string eventName) {
+            TriggerEvent (eventName, null);
+        }
 
         public GameObject currentCheckpoint;
 
@@ -46,6 +110,13 @@ namespace JV {
             player.SetEnabled (true);
             camera.isFollowing = true;
             respawningPlayer = false;
+
+
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth> ();
+
+            if (playerHealth != null) {
+                playerHealth.FullHealth ();
+            }
         }
     }
 }

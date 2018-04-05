@@ -53,10 +53,11 @@ GameObject:
   - component: {fileID: 58988032683854218}
   - component: {fileID: 50231226185670750}
   - component: {fileID: 61176722717688084}
-  - component: {fileID: 114775611125853168}
   - component: {fileID: 114645834261060516}
   - component: {fileID: 114682422680560228}
   - component: {fileID: 95431222028612694}
+  - component: {fileID: 114408194746344594}
+  - component: {fileID: 114291640241981338}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -71,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1617724771803348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.421782, y: -1.7876537, z: 0}
+  m_LocalPosition: {x: 6.0293875, y: -1.8082547, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4565139505732326}
@@ -182,6 +183,34 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114291640241981338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1617724771803348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac3dbb7edac8c9438128ef6819a2ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!114 &114408194746344594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1617724771803348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb8c877548297e47881fe995862b36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  health: 3
+  deathEffect: {fileID: 1286262463817878, guid: fe84ea3eb6adc034fac101aa3e44cb52,
+    type: 2}
+  pointsOnDeath: 500
 --- !u!114 &114645834261060516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,18 +247,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   moveRight: 0
---- !u!114 &114775611125853168
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1617724771803348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f1bd28370891ef4d974b365767b1908, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
 --- !u!212 &212562151200215308
 SpriteRenderer:
   m_ObjectHideFlags: 1
