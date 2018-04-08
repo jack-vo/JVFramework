@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace JV {
-    public class HashtableEvent : UnityEvent<Hashtable> { }
-
     public class LevelManager : MonoBehaviour {
 
         private Dictionary<string, HashtableEvent> eventDictionary;

@@ -5,6 +5,8 @@ using UnityEngine;
 namespace JV {
     public abstract class BaseBehavior : MonoBehaviour {
 
+        public bool behaviorDisabled = false;
+
         protected Controller2D controller;
 
         // Use this for initialization
@@ -13,7 +15,7 @@ namespace JV {
         }
 
         public virtual void Update () {
-            if (!controller.enabled) {
+            if (!controller.enabled || behaviorDisabled) {
                 return;
             }
 

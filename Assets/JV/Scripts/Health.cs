@@ -8,7 +8,11 @@ namespace JV {
         public int health = 1;
         public GameObject deathEffect;
 
-		AudioSource audioSource;
+        public AudioClip takeDamageAudioClip;
+        public AudioClip recoverHealthAudioClip;
+
+        protected AudioSource audioSource;
+        protected Controller2D controller;
 
         public virtual void Start () {
             if (health <= 0) {
@@ -19,7 +23,11 @@ namespace JV {
                 maxHealth = health;
             }
 
-			audioSource = GetComponent<AudioSource> ();
+            if (takeDamageAudioClip || recoverHealthAudioClip) {
+                audioSource = AudioManager.AudioSourceInstance;
+            }
+
+            controller = GetComponent<Controller2D> ();
         }
 
         public virtual void Update () {
@@ -35,16 +43,36 @@ namespace JV {
         public virtual void TakeDamage(int damageToTake) {
             health -= damageToTake;
 
-			if (audioSource) {
-				audioSource.Play ();
+			if (audioSource && takeDamageAudioClip) {
+				audioSource.PlayOneShot (takeDamageAudioClip);
 			}
+
+            if (controller) {
+                Hashtable hashtable = new Hashtable ();
+                hashtable.Add ("HealthPoints", health);
+                hashtable.Add ("HealthPointsDecreased", damageToTake);
+
+                controller.TriggerEvent ("Health:Decreased", hashtable);
+            }
         }
 
-        public virtual void AddHealthPoints(int healthPoints) {
+        public virtual void RecoverHealth(int healthPoints) {
             health += healthPoints;
 
             if (health > maxHealth) {
                 health = maxHealth;
+            }
+
+            if (audioSource && recoverHealthAudioClip) {
+                audioSource.PlayOneShot (recoverHealthAudioClip);
+            }
+
+            if (controller) {
+                Hashtable hashtable = new Hashtable ();
+                hashtable.Add ("HealthPoints", health);
+                hashtable.Add ("HealthPointsIncreased", healthPoints);
+
+                controller.TriggerEvent ("Health:Increased", hashtable);
             }
         }
     }

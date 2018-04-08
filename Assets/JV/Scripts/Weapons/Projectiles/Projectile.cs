@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace JV {
     public class Projectile : MonoBehaviour {
-        public PlayerController player;
         public float speed = 10f;
         public float rotationSpeed;
         public float lifeTime = 1f;
@@ -16,7 +15,8 @@ namespace JV {
         public int pointsForKill;
         public int damage = 1;
 
-        private float lifeTimeCounter;
+        PlayerController player;
+        float lifeTimeCounter;
 
         // Use this for initialization
         void Start () {

@@ -4,13 +4,11 @@ using UnityEngine;
 
 namespace JV {
     [RequireComponent(typeof (Rigidbody2D))]
-    public class Controller2D : RaycastController {
+    public class Controller2D : EventEmitterController {
         public LayerMask collisionLayerMask;
 
         [HideInInspector]
         public AgentInfo agentInfo;
-
-        
 
         public Animator anim;
 
@@ -21,12 +19,17 @@ namespace JV {
         public Transform edgeCheck;
         public float edgeCheckRadius = .3f;
 
+
+        protected Collider2D collider;
+        protected Rigidbody2D rigidbody;
+
         public bool debugEnabled = false;
 
-        private float _storedGravity;
+        float _storedGravity;
 
-        public override void Start () {
-            base.Start ();
+        public virtual void Start () {
+            collider = GetComponent<Collider2D> ();
+            rigidbody = GetComponent<Rigidbody2D> ();
             anim = GetComponent<Animator> ();
         }
 

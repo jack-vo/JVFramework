@@ -26,8 +26,8 @@ namespace JV {
             NotifyHealthChanged ();
         }
 
-        public override void AddHealthPoints (int healthPoints) {
-            base.AddHealthPoints (healthPoints);
+        public override void RecoverHealth (int healthPoints) {
+            base.RecoverHealth (healthPoints);
             NotifyHealthChanged ();
         }
 
