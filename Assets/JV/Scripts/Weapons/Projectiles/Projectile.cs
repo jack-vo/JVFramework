@@ -8,7 +8,7 @@ namespace JV {
         public float rotationSpeed;
         public float lifeTime = 1f;
 
-        protected Rigidbody2D rigidbody;
+        protected Rigidbody2D projectileRigidbody;
 
         public GameObject enemyDeathEffect;
         public GameObject impactEffect;
@@ -16,12 +16,12 @@ namespace JV {
         public int damage = 1;
 
         PlayerController player;
-        float lifeTimeCounter;
+
 
         // Use this for initialization
         void Start () {
             player = FindObjectOfType<PlayerController> ();
-            rigidbody = GetComponent<Rigidbody2D> ();
+            projectileRigidbody = GetComponent<Rigidbody2D> ();
 
             if (player.transform.localScale.x < 0) {
                 speed = -speed;
@@ -44,6 +44,12 @@ namespace JV {
                 //ScoreManager.AddPoints (pointsForKill);
 
                 other.GetComponent<Health> ().TakeDamage (damage);
+
+                KnockbackOnHit knockback = other.GetComponent<KnockbackOnHit> ();
+
+                if (knockback != null) {
+                    knockback.knockbackFromRight = JVUtil.IsTargetOnTheLeft (other.transform, transform);
+                }
             }
 
             SelfDestroy ();

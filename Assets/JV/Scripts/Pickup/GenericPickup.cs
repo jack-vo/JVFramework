@@ -8,8 +8,6 @@ namespace JV {
         public AudioClip pickupAudioClip;
         public int value;
 
-        AudioSource audioSource;
-
         void OnTriggerEnter2D (Collider2D other) {
             if (other.GetComponent<PlayerController>() == null) {
                 return;

@@ -8,9 +8,9 @@ namespace JV {
         public const float skinWidth = .015f;
 
         [HideInInspector]
-        protected Collider2D collider;
+        protected Collider2D agentCollider;
         [HideInInspector]
-        protected Rigidbody2D rigidbody;
+        protected Rigidbody2D agentRigidbody;
 
 
         public int horizontalRayCount = 4;
@@ -24,21 +24,21 @@ namespace JV {
 
         // Use this for initialization
         public virtual void Start () {
-            collider = GetComponent<Collider2D> ();
-            rigidbody = GetComponent<Rigidbody2D> ();
+            agentCollider = GetComponent<Collider2D> ();
+            agentRigidbody = GetComponent<Rigidbody2D> ();
 
             ComputeRays ();
         }
 
         void ComputeRays () {
-            Bounds bounds = collider.bounds;
+            Bounds bounds = agentCollider.bounds;
 
             horizontalRayCount = Mathf.Clamp (horizontalRayCount, 2, int.MaxValue);
             horizontalRaySpacing = bounds.size.x / (horizontalRayCount - 1);
         }
 
         protected void UpdateRaycastOrigins () {
-            Bounds bounds = collider.bounds;
+            Bounds bounds = agentCollider.bounds;
             bounds.Expand (skinWidth * -2); // srink 2 sides by skinWidth
 
             raycastOrigins.bottomLeft = new Vector2 (bounds.min.x, bounds.min.y);

@@ -77,11 +77,11 @@ namespace JV {
 
         private bool respawningPlayer;
         private PlayerController player;
-        private CameraController camera;
+        private CameraController cameraController;
 
         void Start () {
             player = FindObjectOfType<PlayerController> ();
-            camera = FindObjectOfType<CameraController> ();
+            cameraController = FindObjectOfType<CameraController> ();
         }
 
         public void RespawnPlayer() {
@@ -96,7 +96,7 @@ namespace JV {
         public IEnumerator RespawnPlayerCo () {
             Instantiate (deathParticle, player.transform.position, player.transform.rotation);
             player.SetEnabled (false);
-            camera.isFollowing = false;
+            cameraController.isFollowing = false;
             ScoreManager.AddPoints (-pointPernaltyOnDeath);
 
             Debug.Log ("Respawn player");
@@ -106,7 +106,7 @@ namespace JV {
             Instantiate (respawnParticle, currentCheckpoint.transform.position, currentCheckpoint.transform.rotation);
             player.transform.position = currentCheckpoint.transform.position;
             player.SetEnabled (true);
-            camera.isFollowing = true;
+            cameraController.isFollowing = true;
             respawningPlayer = false;
 
 

@@ -5,10 +5,10 @@ using UnityEngine;
 namespace JV {
     public class SingleDirectionProjectile : Projectile {
         public override void Update () {
-            rigidbody.velocity = new Vector2 (speed, rigidbody.velocity.y);
+            projectileRigidbody.velocity = new Vector2 (speed, projectileRigidbody.velocity.y);
 
-            if (rotationSpeed != 0) {
-                rigidbody.angularVelocity = rotationSpeed;
+            if (!JVUtil.AboutEqual(rotationSpeed, 0f)) {
+                projectileRigidbody.angularVelocity = rotationSpeed;
             }
 
             base.Update ();

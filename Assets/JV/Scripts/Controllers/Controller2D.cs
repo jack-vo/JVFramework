@@ -20,21 +20,21 @@ namespace JV {
         public float edgeCheckRadius = .3f;
 
 
-        protected Collider2D collider;
-        protected Rigidbody2D rigidbody;
+        protected Collider2D agentCollider;
+        protected Rigidbody2D agentRigidbody;
 
         public bool debugEnabled = false;
 
         float _storedGravity;
 
         public virtual void Start () {
-            collider = GetComponent<Collider2D> ();
-            rigidbody = GetComponent<Rigidbody2D> ();
+            agentCollider = GetComponent<Collider2D> ();
+            agentRigidbody = GetComponent<Rigidbody2D> ();
             anim = GetComponent<Animator> ();
         }
 
         public virtual void Update () {
-            Bounds bounds = collider.bounds;
+            Bounds bounds = agentCollider.bounds;
 
             if (groundCheck) {
                 agentInfo.grounded = Physics2D.OverlapCircle (
@@ -62,18 +62,18 @@ namespace JV {
         }
 
         public void Move(Vector2 newVelocity) {      
-            rigidbody.velocity = newVelocity;
+            agentRigidbody.velocity = newVelocity;
         }
 
         public void SetEnabled (bool value) {
             if (!value) {
-                _storedGravity = rigidbody.gravityScale;
-                rigidbody.gravityScale = 0f;
+                _storedGravity = agentRigidbody.gravityScale;
+                agentRigidbody.gravityScale = 0f;
             } else {
-                rigidbody.gravityScale = _storedGravity;
+                agentRigidbody.gravityScale = _storedGravity;
             }
 
-            rigidbody.velocity = Vector2.zero;
+            agentRigidbody.velocity = Vector2.zero;
             
             enabled = value;
             GetComponent<Renderer> ().enabled = value;
@@ -81,7 +81,7 @@ namespace JV {
 
         public Vector2 Velocity {
             get {
-                return rigidbody.velocity;
+                return agentRigidbody.velocity;
             }
         }
 

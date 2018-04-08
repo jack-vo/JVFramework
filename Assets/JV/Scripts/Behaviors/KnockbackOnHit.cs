@@ -5,10 +5,9 @@ using UnityEngine.Events;
 
 namespace JV {
     public class KnockbackOnHit : BaseBehavior {
-        public float knockback = 1f;
-        public float knockbackLength;
-        public float knockbackCount;
-        public bool knockbackRight;
+        public float knockback = 10f;
+        public bool knockbackFromRight;
+        public bool debugKnockback;
 
         UnityAction<Hashtable> healthDecreasedEvent;
 
@@ -22,15 +21,18 @@ namespace JV {
 
         void OnHealthDecreased(Hashtable eventData) {
             Debug.Log ("Knock back");
-            if (knockbackRight) {
-                controller.Move (new Vector2 (-knockback, knockback));
-            } else {
+            KnockBack ();
+        }
+
+        void KnockBack () {
+            if (knockbackFromRight) {
                 controller.Move (new Vector2 (knockback, knockback));
+            } else {
+                controller.Move (new Vector2 (-knockback, knockback));
             }
         }
 
         public override void UpdateBehavior () {
-            
         }
     }
 }

@@ -25,6 +25,12 @@ namespace JV {
                 if (playerHealth != null) {
                     playerHealth.TakeDamage (damage);
                 }
+
+                KnockbackOnHit knockback = other.GetComponent<KnockbackOnHit> ();
+
+                if (knockback != null) {
+                    knockback.knockbackFromRight = JVUtil.IsTargetOnTheLeft (other.transform, transform);
+                }
             }
         }
     }

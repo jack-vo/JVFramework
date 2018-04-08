@@ -5,14 +5,14 @@ using UnityEngine;
 namespace JV {
     public class DestroyFinishedParticle : MonoBehaviour {
 
-        ParticleSystem particleSystem;
+        ParticleSystem particle;
 
         void Start () {
-            particleSystem = GetComponent<ParticleSystem> ();
+            particle = GetComponent<ParticleSystem> ();
         }
 
         void Update () {
-            if (particleSystem.isPlaying) {
+            if (particle.isPlaying) {
                 return;
             }
 
