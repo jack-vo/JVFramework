@@ -164,7 +164,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.75}
+  m_Size: {x: 0.74, y: 0.44}
   m_EdgeRadius: 0
 --- !u!95 &95431222028612694
 Animator:
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac3dbb7edac8c9438128ef6819a2ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  behaviorDisabled: 0
   damage: 1
 --- !u!114 &114408194746344594
 MonoBehaviour:
@@ -207,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
-  health: 3
+  health: 1
   deathEffect: {fileID: 1286262463817878, guid: fe84ea3eb6adc034fac101aa3e44cb52,
     type: 2}
   takeDamageAudioClip: {fileID: 8300000, guid: 7ae5472488b4746b6b1a07704d198c33, type: 3}
@@ -224,7 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f482fbacdbcff140a7f5c79c3fe0f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalRayCount: 1
   collisionLayerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474be463d9cc8bd459abd0d29d78015f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  behaviorDisabled: 0
   moveSpeed: 3
   moveRight: 0
 --- !u!212 &212562151200215308
