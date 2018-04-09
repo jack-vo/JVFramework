@@ -25,7 +25,7 @@ namespace JV {
 
             if (Velocity.x > 0) {
                 transform.localScale = new Vector3 (1f, 1f, 1f);
-            } else if (Velocity.x < 0) {
+            } else if (Velocity.x < -.1f) {
                 transform.localScale = new Vector3 (-1f, 1f, 1f);
             }
         }
