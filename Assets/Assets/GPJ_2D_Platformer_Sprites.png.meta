@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bea90281faa60ec43a868e3174ebe005
-timeCreated: 1523449930
+timeCreated: 1523479104
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,6 +16,9 @@ TextureImporter:
     21300018: Ninja_star
     21300020: Player_Sword
     21300022: Level_Exit
+    21300024: Coin_2
+    21300026: GPJ_2D_Platformer_Sprites_0
+    21300028: Coin_3
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -253,6 +256,48 @@ TextureImporter:
         y: 48
         width: 19
         height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Coin_2
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 84
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GPJ_2D_Platformer_Sprites_0
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 84
+        width: 1
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Coin_3
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 84
+        width: 1
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
